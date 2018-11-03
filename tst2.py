@@ -93,35 +93,3 @@ print(finallist)
 for i3 in finallist:
 	for i4 in i3:
 		os.remove(i4) 
-			
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-			
-			
