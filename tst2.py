@@ -1,11 +1,60 @@
 import filecmp
 import os 
-path=[r"D:\test1",r"D:\test2"]
+path=[]
+
+while True:
+	switch=int(input('0.删除重复文件\n1.重命名重复文件\n请输入：')) # switch=0 删除重复文件，switch=1 重命名重复文件
+	
+	if switch==0:
+		print("\nswitch等于0,删除重复文件")
+		break
+	elif switch==1:
+		print("\nswitch等于1,重命名重复文件")
+		break
+	else:
+		print("\n错误，switch超出允许值，switch=",switch,'请重新输入\n')
+
+def cclist(x,y): #x:list 检查y在表X中是否存在
+	for i in x[0:len(x)-1]:
+		if i==y:
+			return 'XT'
+	return 'BT'
+		
+while True:
+	path.append(input('\n输入要查重的目录：'))
+	if cclist(path,path[len(path)-1])=='XT':
+		path.pop(len(path)-1)
+		print('已输入过相同目录')
+	if path[len(path)-1]=='f':
+		path.pop(len(path)-1)
+		break
+	print('\n可继续输入目录，输入f结束')
+
+print('\n选择的switch是：')
+if switch==0:
+	print("switch等于0,删除重复文件")
+elif switch==1:
+	print("switch等于1,重命名重复文件")
+else:
+	print('错误，switch超出允许值')
+	
+def dayinglist(x):#打印list
+	for i in x:
+		print(i)
+		
+print('\n要检查的目录是：')
+dayinglist(path)
+
+while True:
+	if input('\n请确认上述信息，继续，请输入y:')=='y':
+		break
+
+
 list=[]
 finallist=[]
 xt=[]
 for i in path:
-	g = os.walk(i) 
+	g = os.walk(i)
 	list.extend(g)
 
 s = []
@@ -84,12 +133,20 @@ while True:
 
 print(finallist)
 
-z=0
-for i2 in finallist:
-	z=z+1
-	finallist[z-1].pop(0)
-print(finallist)
+if switch==0:
+	z=0
+	for i2 in finallist:
+		z=z+1
+		finallist[z-1].pop(0)
+	print(finallist)
 
-for i3 in finallist:
-	for i4 in i3:
-		os.remove(i4) 
+	for i3 in finallist:
+		for i4 in i3:
+			os.remove(i4) 		
+elif switch==1:
+	for i5 in finallist:
+		for i6 in i5:
+			os.chdir(os.path.dirname(i6))
+			os.rename(os.path.basename(i6),"!重复的文件+"+os.path.basename(i6))
+else:
+	print("switch错误：switch=",switch)
