@@ -114,10 +114,10 @@ def rename(s):
 
 if switch==0:
 	for i in listhz:
-		remove(s)
+		remove(i)
 elif switch==1:
 	for i in listhz:
-		rename(s)
+		rename(i)
 else:
 	print("switch错误：switch=",switch)
 
