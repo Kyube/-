@@ -88,13 +88,14 @@ def remove(s):
 					if filecmp.cmp(file1,file2):
 						print(file1)
 						print(file2)
-						print(js,r"/",sum)
+						print(js,r"/",sum,sumhz)
 						print(' ')
 						os.remove(file2)
 
 def rename(s):
 	a=0
 	js=0
+	l=set()
 	sum=(1+len(s))*len(s)/2
 	for file1 in s:
 		a=a+1
@@ -106,12 +107,20 @@ def rename(s):
 					if filecmp.cmp(file1,file2):
 						print(file1)
 						print(file2)
-						print(js,r"/",sum)
+						print(js,r"/",sum,sumhz)
 						print(' ')
 						os.chdir(os.path.dirname(file2))
 						os.rename(os.path.basename(file2),"!!!重复的文件+++"+os.path.basename(file2))
-						os.rename(os.path.basename(file1),"!!!重复的文件+++"+os.path.basename(file1))
+						l.add(file1)
+	for i in l:
+		os.chdir(os.path.dirname(i))
+		os.rename(os.path.basename(i),"!!!重复的文件+++"+os.path.basename(i))
 
+sumhz=[]
+for i in listhz:
+	sumhz.append((1+len(i))*len(i)/2)
+print(sumhz,'\n')
+					
 if switch==0:
 	for i in listhz:
 		remove(i)
