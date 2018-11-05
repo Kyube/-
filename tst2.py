@@ -1,6 +1,7 @@
 import filecmp
 import os 
 path=[]
+houzuifl=['.bmp','.7z','.txt'] #对不同后缀分类比较
 
 while True:
 	switch=int(input('0.删除重复文件\n1.重命名重复文件\n请输入：')) # switch=0 删除重复文件，switch=1 重命名重复文件
@@ -59,7 +60,20 @@ s = []
 for path,dir_list,file_list in list: 
 	for file_name in file_list: 
 		s.append(os.path.join(path, file_name))
+		
+def houzui(x,y): #从目录list：X中，挑选后缀y，返回
+	s=[]
+	for i in x:
+		if os.path.splitext(i)[1]==y:
+			s.append(i)
+	return s
 
+
+listhz=[]
+
+for n in houzuifl:
+	listhz.append(houzui(s,n))
+		
 def remove(s):		
 	a=0
 	js=0
@@ -96,11 +110,14 @@ def rename(s):
 						print(' ')
 						os.chdir(os.path.dirname(file2))
 						os.rename(os.path.basename(file2),"!!!重复的文件+++"+os.path.basename(file2))
+						os.rename(os.path.basename(file1),"!!!重复的文件+++"+os.path.basename(file1))
 
 if switch==0:
-	remove(s)
+	for i in listhz:
+		remove(s)
 elif switch==1:
-	rename(s)
+	for i in listhz:
+		rename(s)
 else:
 	print("switch错误：switch=",switch)
 
