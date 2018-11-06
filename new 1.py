@@ -26,7 +26,7 @@ for i in list_path:
 print(' ')
 
 for i in list_path:	
-	print(s)
+	print(i)
 print(' ')
 
 js=0
